@@ -6,27 +6,25 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 04:29:33 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/18 18:04:32 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/18 18:29:33 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	int		fd;
-	size_t	i;
 	char	*line;
 
-	i = 4;
-	fd = open("aaaa.txt", O_RDONLY);
+	fd = av[1];
 	line = get_next_line(fd);
-	while (i)
+	while (line)
 	{
 		printf("%s", line);
 		free(line);
 		line = get_next_line(fd);
-		i--;
 	}
+	close(fd);
 	return (0);
 }
