@@ -6,13 +6,19 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 04:31:45 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/18 11:01:22 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/18 17:52:56 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static size_t	ft_strlen(const char *str)
+size_t	ft_strlen(const char *str);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -22,7 +28,7 @@ static size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-static void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned char	*tmp_dst;
 	unsigned char	*tmp_src;
