@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:06:29 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/19 11:22:22 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/19 14:59:52 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 1
+# define MAX_FD 3
 
 char			*get_next_line(int fd);
 char			*fill_line(int fd, char *buffer, char *left);

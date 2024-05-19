@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:01:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/19 11:40:46 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/19 12:06:02 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ unsigned int	ft_strlcpy(char *dest, char *src, size_t size);
 
 char	*get_next_line(int fd)
 {
-	static char	*left[299];
+	static char	*left[MAX_FD];
 	char		*line;
 	char		*buffer;
 
