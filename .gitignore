@@ -1,4 +1,5 @@
 *.out
 *.o
 .vscode/
-aaaa.txt
+*.txt
+gnl_tester/
