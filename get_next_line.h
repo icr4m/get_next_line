@@ -21,7 +21,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 1
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 300000
+# endif
 
 char	*get_next_line(int fd);
 char	*fill_line(int fd, char *buffer, char *left);
