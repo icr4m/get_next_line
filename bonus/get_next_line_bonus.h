@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:06:29 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/19 14:59:52 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/19 15:19:58 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 1
-# define MAX_FD 3
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+# ifndef MAX_FD
+#  define MAX_FD 1
+# endif
 
 char			*get_next_line(int fd);
 char			*fill_line(int fd, char *buffer, char *left);

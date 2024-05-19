@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:11:30 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/19 14:59:09 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/19 15:00:18 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	main(int ac, char **av)
 		line_2 = get_next_line(fd_2);
 		line_3 = get_next_line(fd_3);
 		if (line)
-			printf("La ligne %ld du fichier 1: %s\n", i, line);
+			printf("La ligne %ld du fichier 1: %s\n", count_line, line);
 		if (line_2)
-			printf("La ligne %ld du fichier 2: %s\n", i, line_2);
+			printf("La ligne %ld du fichier 2: %s\n", count_line, line_2);
 		if (line_3)
-			printf("La ligne %ld du fichier 3: %s\n", i, line_3);
+			printf("La ligne %ld du fichier 3: %s\n", count_line, line_3);
 		count_line++;
 		free(line);
 		free(line_2);
