@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:24:54 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/18 18:07:24 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/20 14:27:29 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,11 @@ char	*set_line(char *line)
 	if (line[i] == 0 || line[1] == 0)
 		return (NULL);
 	left = ft_substr(line, i + 1, ft_strlen(line) + i);
+	if (*left == 0)
+	{
+		free(left);
+		left = NULL;
+	}
 	line[i + 1] = '\0';
 	return (left);
 }
