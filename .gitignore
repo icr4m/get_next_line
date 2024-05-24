@@ -2,4 +2,4 @@
 *.o
 .vscode/
 *.txt
-gnl_tester/
+gnl_tester/c
