@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:01:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/20 14:31:54 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/24 16:12:55 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*get_next_line(int fd)
 	}
 	line = fill_line(fd, buffer, left[fd]);
 	free(buffer);
-	buffer = NULL;
 	if (!line)
 		return (NULL);
 	left[fd] = set_line(line);

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:06:29 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/20 14:33:23 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/05/24 16:46:43 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 100
 # endif
 
 # ifndef MAX_FD
-#  define MAX_FD 1
+#  define MAX_FD 1048576
 # endif
 
 char			*get_next_line(int fd);
