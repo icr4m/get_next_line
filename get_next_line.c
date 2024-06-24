@@ -6,113 +6,65 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:24:54 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/20 14:27:29 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/06/24 13:23:58 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char			*get_next_line(int fd);
-char			*fill_line(int fd, char *buffer, char *left);
-char			*set_line(char *line);
-char			*ft_substr(const char *s, unsigned int start, size_t len);
-unsigned int	ft_strlcpy(char *dest, char *src, size_t size);
+static t_line_status	get_line_from_buff(char **line, char *buffer)
+{
+	size_t	index;
+
+	index = index_of(buffer, '\n');
+	if (*buffer != '\0')
+	{
+		*line = strnjoin(*line, buffer, index + 1);
+		if (buffer[index] == '\n')
+		{
+			ft_strncpy(buffer, buffer + index + 1, BUFFER_SIZE);
+			return (VALID_LINE);
+		}
+	}
+	return (INVALID_LINE);
+}
+
+static t_line_status	fill_line_from_file(char **line, char *rest,
+		const int fd)
+{
+	ssize_t	read_bytes;
+	char	buffer[BUFFER_SIZE + 1];
+
+	ft_bzero(buffer, BUFFER_SIZE + 1);
+	read_bytes = read(fd, buffer, BUFFER_SIZE);
+	while (read_bytes > 0 && get_line_from_buff(line, buffer) == INVALID_LINE)
+	{
+		ft_bzero(buffer, BUFFER_SIZE + 1);
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+	}
+	if (read_bytes == -1)
+		return (INVALID_LINE);
+	ft_strncpy(rest, buffer, read_bytes);
+	return (VALID_LINE);
+}
+
+static void	get_line(int fd, char **line)
+{
+	static char	rest[OPEN_MAX][BUFFER_SIZE + 1] = {0};
+
+	if (get_line_from_buff(line, rest[fd]) == INVALID_LINE)
+		fill_line_from_file(line, rest[fd], fd);
+}
 
 char	*get_next_line(int fd)
 {
-	static char	*left;
-	char		*line;
-	char		*buffer;
+	char	*line;
 
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	if (fd == -1 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	{
-		free(left);
-		free(buffer);
-		left = NULL;
-		buffer = NULL;
-		return (NULL);
-	}
-	if (!buffer)
-		return (NULL);
-	line = fill_line(fd, buffer, left);
-	free(buffer);
-	buffer = NULL;
-	if (!line)
-		return (NULL);
-	left = set_line(line);
+	line = NULL;
+	if (fd > -1 && fd < OPEN_MAX && OPEN_MAX > 0 && BUFFER_SIZE <= INT_MAX
+		/ OPEN_MAX)
+		get_line(fd, &line);
 	return (line);
-}
-
-char	*fill_line(int fd, char *buffer, char *left)
-{
-	ssize_t	bytes_read;
-	char	*tmp;
-
-	bytes_read = 1;
-	while (bytes_read > 0)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free(left);
-			return (NULL);
-		}
-		else if (bytes_read == 0)
-			break ;
-		buffer[bytes_read] = '\0';
-		if (!left)
-			left = ft_strdup("");
-		tmp = left;
-		left = ft_strjoin(tmp, buffer);
-		free(tmp);
-		tmp = NULL;
-		if (ft_strchr(buffer, '\n'))
-			break ;
-	}
-	return (left);
-}
-
-char	*set_line(char *line)
-{
-	size_t	i;
-	char	*left;
-
-	i = 0;
-	while (line[i] != '\n' && line[i] != '\0')
-		i++;
-	if (line[i] == 0 || line[1] == 0)
-		return (NULL);
-	left = ft_substr(line, i + 1, ft_strlen(line) + i);
-	if (*left == 0)
-	{
-		free(left);
-		left = NULL;
-	}
-	line[i + 1] = '\0';
-	return (left);
-}
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	char	*substr;
-
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	else if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	if (s == NULL)
-		substr = NULL;
-	else
-	{
-		substr = (char *)malloc(sizeof(char) * (len + 1));
-		if (!substr)
-			return (NULL);
-		ft_strlcpy(substr, (char *)s + start, len + 1);
-	}
-	return (substr);
 }
 
 unsigned int	ft_strlcpy(char *dest, char *src, size_t size)

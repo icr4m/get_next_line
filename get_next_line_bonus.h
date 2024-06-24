@@ -1,12 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 11:06:29 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/24 16:46:43 by ijaber           ###   ########.fr       */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+
+	+:+     */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+
+	+#+        */
+/*                                                +#+#+#+#+#+
+	+#+           */
+/*   Created: 2024/05/18 10:24:41 by ijaber            #+#    #+#             */
+/*   Updated: 2024/05/18 10:24:41 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +17,30 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include <fcntl.h>
+# include <limits.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
+# define OPEN_MAX FOPEN_MAX
+
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 300000
 # endif
 
-# ifndef MAX_FD
-#  define MAX_FD 1048576
-# endif
+typedef enum e_line_status
+{
+	INVALID_LINE,
+	VALID_LINE
+}		t_line_status;
 
-char			*get_next_line(int fd);
-char			*fill_line(int fd, char *buffer, char *left);
-char			*set_line(char *line);
-char			*ft_substr(const char *s, unsigned int start, size_t len);
-unsigned int	ft_strlcpy(char *dest, char *src, size_t size);
-size_t			ft_strlen(const char *str);
-void			*ft_memcpy(void *dst, const void *src, size_t n);
-char			*ft_strdup(const char *s1);
-char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *str);
+size_t	index_of(const char *str, const char c);
+char	*ft_strncpy(char *dest, char *src, size_t size);
+char	*strnjoin(char *s1, const char *s2, const size_t n);
+void	ft_bzero(void *ptr, size_t size);
+
+char	*get_next_line(int fd);
 
 #endif
