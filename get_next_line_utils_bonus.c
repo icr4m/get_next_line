@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 04:31:45 by ijaber            #+#    #+#             */
-/*   Updated: 2024/06/24 13:23:11 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/06/24 13:25:54 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*strnjoin(char *s1, const char *s2, const size_t n)
 
 void	ft_bzero(void *ptr, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < size)

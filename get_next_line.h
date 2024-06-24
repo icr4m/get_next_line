@@ -25,15 +25,15 @@
 
 # define OPEN_MAX FOPEN_MAX
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 300000
-# endif
-
 typedef enum e_line_status
 {
 	INVALID_LINE,
 	VALID_LINE
 } t_line_status;
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 300000
+# endif
 
 size_t	ft_strlen(const char *str);
 size_t	index_of(const char *str, const char c);
